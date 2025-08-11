@@ -1,10 +1,19 @@
-[build-system]
-requires = ["setuptools>=64", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "mlprojects"
 version = "0.0.1"
 description = "Little ML projects for learning"
+authors = [
+    { name = "Myk", email = "michaelmugendi1707@gmail.com" }
+]
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
+
+dependencies = [
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn",
+    "catboost",
+    "xgboost",
+]
