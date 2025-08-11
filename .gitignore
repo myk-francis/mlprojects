@@ -142,3 +142,6 @@ models_pkl/
 
 # static
 .static/
+
+.artifacts
+artifacts
