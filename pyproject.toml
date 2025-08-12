@@ -16,4 +16,5 @@ dependencies = [
     "scikit-learn",
     "catboost",
     "xgboost",
+    "dill",
 ]
