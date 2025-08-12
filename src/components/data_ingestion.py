@@ -19,6 +19,23 @@ class DataIngestion:
     def __init__(self):
         self.ingestion_config=DataIngestionConfig()
 
+    def append_data(self, new_data_df: pd.DataFrame):
+        try:
+            if os.path.exists('notebook/stud.csv'):
+                # Load existing data
+                existing_df = pd.read_csv('notebook/stud.csv')
+                # Append new data
+                combined_df = pd.concat([existing_df, new_data_df], ignore_index=True)
+            else:
+                # No existing data, so new data is the combined data
+                combined_df = new_data_df
+
+            # Save combined data back to CSV
+            combined_df.to_csv('notebook/stud.csv', index=False)
+            print(f"Data appended successfully. Total records: {len(combined_df)}")
+        except Exception as e:
+            raise Exception(f"Error appending data: {e}")
+
     def initiate_data_ingestion(self):
         logging.info('Data Ingestion methods Starts')
         try:

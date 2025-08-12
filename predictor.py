@@ -7,6 +7,24 @@ from typing import Literal
 from src.exception import CustomException  # adjust import path
 from src.utils import load_object  # adjust import path
 from threading import Lock
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import StandardScaler
+from typing import List, Dict, Any
+
+class TrainingRecord(BaseModel):
+    gender: Literal["male", "female"]
+    race_ethnicity: Literal["group A", "group B", "group C", "group D", "group E"]
+    parental_level_of_education: str
+    lunch: Literal["standard", "free/reduced"]
+    test_preparation_course: Literal["none", "completed"]
+    math_score: int = Field(..., ge=0, le=100)
+    reading_score: int = Field(..., ge=0, le=100)
+    writing_score: int = Field(..., ge=0, le=100)
+
+class TrainRequest(BaseModel):
+    data: List[TrainingRecord]
+    target_column: str = "math_score"  # assuming math_score is target for training
+
 
 class CustomeData(BaseModel):
     gender: Literal["male", "female"]
@@ -57,3 +75,6 @@ class PredictPipeline:
             return preds
         except Exception as e:
             raise CustomException(e, sys.exc_info())
+        
+    
+    
