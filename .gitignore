@@ -143,5 +143,5 @@ models_pkl/
 # static
 .static/
 
-.artifacts
-artifacts
+
+catboost_info
