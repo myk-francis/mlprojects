@@ -18,8 +18,6 @@ logger = get_logger(__name__)
 pipeline = PredictPipeline()  # load model once at startup
 data_ingestion = DataIngestion()
 
-
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     try:
@@ -59,17 +57,7 @@ def health():
 @app.post("/predict", response_model=PredictResponse, tags=["prediction"])
 def predict(data: CustomeData):
     try:
-        # model = get_model()
-        # if model is None:
-        #     raise HTTPException(status_code=500, detail="Model not loaded")
-
-        # features = np.array(request.features, dtype=float)
-        # if features.ndim == 1:
-        #     features = features.reshape(1, -1)
-
-        # preds = model.predict(features)
-
-        # return PredictResponse(prediction=preds.tolist(), success=True)
+       
 
         preds = pipeline.predict(data.get_data_as_dataframe())
         return PredictResponse(prediction=preds.tolist(), success=True)
